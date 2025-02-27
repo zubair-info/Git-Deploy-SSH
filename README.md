@@ -1,17 +1,43 @@
-Setting Up SSH with PuTTY for Git Deployment
-#Step 1: Install PuTTY
-Download and install PuTTY for your OS from PuTTY’s official website.
+# Git-Deploy-via-ssh-user
+## Deploying to a Single Private Repository from local terminal with SSH access
 
-#Step 2: Generate/Open SSH Key in PuTTYgen
-Open PuTTYgen (search for it in Windows).
-Click Load and select your existing private key file (if provided by the server).
-If you need a new key:
-Click Generate, move your mouse randomly to generate entropy, and save it.
-Save the private key with the .ppk extension (PuTTY will handle the format automatically).
-#Step 3: Configure PuTTY to Use the SSH Key
-Open PuTTY.
-Enter your server IP or hostname under “Host Name (or IP address)”.
-In the left sidebar, go to Connection → SSH → Auth.
-Under Credentials, click Browse and select your saved .ppk private key.
-Click Open to start the SSH session.
-If prompted, accept the server's fingerprint.
+# How-to-connect-putty-with-ssh
+### Step 1: install puttly for required os
+### Step 2: open puttygen with from windows app
+### Step 3: open private key in puttygen ( which one you get from server or ssh server )
+### Step 4: save private key with .pkr format -- it will automatically set the extention from puttygen
+### Step 5: go to the putty
+### Step 6: put server address or ip
+### Step 7: in the sidebar go to the ssh > auth > credentials then upload the private key which one you save
+### Step 8: open the terminal and acess the ssh 
+
+
+### Go to the SSH directory
+```bash
+ cd ~/.ssh/
+```
+```bash
+ ssh-keygen -t rsa -b 2048 -C "username@ip" -f ~/.ssh/new_project_rsa
+```
+```bash
+ cat ~/.ssh/new_project_rsa.pub
+```
+
+### Copy it and open your private repositories settings and there has deploy keys section
+### add the ssh key there
+```bash
+ nano ~/.ssh/config
+```
+```bash
+ Host github.com
+    User git
+    IdentityFile ~/.ssh/dploy-git
+```
+### after paste click ctrl-s, ctrl-c, ctrl-x
+```bash
+ ssh -T github-new-project
+```
+### Go to the directory
+```bash
+ git clone "clone-url" 
+```
